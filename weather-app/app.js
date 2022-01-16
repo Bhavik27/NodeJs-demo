@@ -1,16 +1,16 @@
 const request = require('postman-request');
 
-const WEATHER_API_URL = "http://api.weatherstack.com/current?access_key=b567937f467d6a0f0001a14ef63b7087&query=23.0225,72.5714"
+const access_token = "  " // enter your access token
+const MAPBOX_API_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=" + access_token;
 
-request(WEATHER_API_URL, (error, response) => {
+request(MAPBOX_API_URL, (error, response) => {
     if (error) {
         console.log('Unable to connect REST API');
     }
     else {
         const data = JSON.parse(response.body)
-        const location = data.location;
-        const currentData = { temperature: data.current.temperature, weather_descriptions: data.current.weather_descriptions }
-        console.log(location);
-        console.log(currentData);
+        const logtitude = data.features[0].center[0]
+        const latitude = data.features[0].center[1]
+        console.log(logtitude + "," + latitude);
     }
 })
