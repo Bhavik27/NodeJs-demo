@@ -52,6 +52,15 @@ app.get('/weather', (req, res) => {
 })
 
 
+app.get('/weather/*', (req, res) => {
+    res.send("No weather content found")
+})
+
+app.get('*', (req, res) => {
+    res.send("404 Page")
+})
+
+
 
 app.listen(PORT, () => {
     console.log('server started...');
