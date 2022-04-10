@@ -37,7 +37,7 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'HELP',
-        helpMessage:'You need some help?',
+        helpMessage: 'You need some help?',
         createdBy: 'Bhavik'
     })
 })
@@ -49,6 +49,20 @@ app.get('/weather', (req, res) => {
         location: 'India',
         forecast: 'Haze (Humidity: 64% Wind: 18 km/h).'
     })
+})
+
+app.get('/products', (req, res) => {
+    if (!req.query.product) {
+        res.send({ message: 'You must provide search terms.' })
+    }
+    else {
+        res.send({
+            products: req.query.product
+        })
+    }
+
+
+
 })
 
 
