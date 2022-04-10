@@ -1,25 +1,14 @@
+const path = require('path')
 const express = require('express');
 
 const app = express()
 
 const PORT = 3000;
+const PUBLIC_DIRECTORY = path.join(__dirname, '../public/')
 
-app.get('', (req, res) => {
-    res.send('<h2>Hello!...</h2>')
-})
 
-app.get('/help', (req, res) => {
-    res.send(
-        [
-            { Host: 'localhost', port: 3000 },
-            { Host: '127.0.0.1', port: 3000 }
-        ]
-    )
-})
 
-app.get('/about', (req, res) => {
-    res.send('<i>About page.</i>')
-})
+app.use(express.static(PUBLIC_DIRECTORY))
 
 app.get('/weather', (req, res) => {
     res.send({
